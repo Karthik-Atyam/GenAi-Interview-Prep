@@ -4,7 +4,20 @@ const connectToDB = require("./src/config/database")
 
 connectToDB()
 
+async function startServer() {
+    try {
+        app.listen(process.env.PORT, () => {
+            console.log(`Server is running on port ${process.env.PORT||3000}`);
+        });
+    }
+    catch (err) {
+        console.log("Database connection failed",err);
+        process.exit(1)
+    }
+}
 
-app.listen(3000, () => {
-    console.log("Server is running on port 3000")
-})
+startServer()
+
+
+
+
